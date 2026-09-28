@@ -1063,7 +1063,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
         elif m is CBFuse:
             c2 = ch[f[-1]]
         # For my modification -------------------------
-        elif m in {C_Attention, H_Attention, W_Attention, Spatial_Attention, CBS, ScaleDotProduct, Contigous_Att}:
+        elif m in {C_Attention, H_Attention, W_Attention, Spatial_Attention, CBS, ScaleDotProduct, Contigous_Att, L_HSDPA}:
             c1 = args[0]
             c2 = args[1]
         # ------------------------------------End modify

@@ -247,3 +247,48 @@ class Contigous_Att(nn.Module):    # Input CxHxW
         output = self.sl(self.bn(self.conv(output)))
        # print("# Output Final Size: ", output.size())        # B x C1*5 x H x W
         return output   
+
+
+class L_HSDPA(nn.Module):
+    """Lightweight Hierarchical Scaled Dot-Product Attention (L-HSDPA).
+    
+    Proposed by Ferrer, Mendoza, & Murillo (2026).
+    1. Compresses input channels from C to r*C (default r=0.5) via 1x1 conv.
+    2. Computes 3 hierarchical levels of TDA (ScaleDotProduct) on reduced channels.
+    3. Concatenates hierarchical outputs with compressed representation (4 * r*C).
+    4. Projects concatenated features back to target output channels (c2).
+    """
+    def __init__(self, c1, c2, r=0.5):
+        super().__init__()
+        self.r = float(r)
+        c_mid = max(16, int(c1 * self.r))
+        
+        # 1x1 Channel-reduction bottleneck (C -> r*C)
+        self.reduce_conv = nn.Conv2d(c1, c_mid, kernel_size=1, stride=1, bias=False)
+        self.reduce_bn = nn.BatchNorm2d(c_mid)
+        self.reduce_act = nn.SiLU()
+        
+        # 3-level TDA (ScaleDotProduct) operating on compressed channel dimension
+        self.sdp = ScaleDotProduct(c_mid, c_mid)
+        
+        # 1x1 Output projection layer (4 * c_mid -> c2)
+        self.proj_conv = nn.Conv2d(c_mid * 4, c2, kernel_size=1, stride=1, bias=False)
+        self.proj_bn = nn.BatchNorm2d(c2)
+        self.proj_act = nn.SiLU()
+
+    def forward(self, x):
+        # Step 1: Channel reduction
+        x_comp = self.reduce_act(self.reduce_bn(self.reduce_conv(x)))
+        
+        # Step 2: 3-level hierarchical attention
+        y1 = self.sdp(x_comp)
+        y2 = self.sdp(y1)
+        y3 = self.sdp(y2)
+        
+        # Step 3: Hierarchical feature fusion (3 attention levels + compressed input)
+        cat = torch.cat((y1, y2, y3, x_comp), dim=1)
+        
+        # Step 4: Final 1x1 projection to output channels c2
+        out = self.proj_act(self.proj_bn(self.proj_conv(cat)))
+        return out
+

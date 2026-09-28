@@ -1,0 +1,13 @@
+{
+  "id": "sednaaa90377/l-hsdpa-training",
+  "title": "L-HSDPA Training",
+  "code_file": "train_kaggle.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "leonidkulyk/ip102-yolov5"
+  ]
+}
