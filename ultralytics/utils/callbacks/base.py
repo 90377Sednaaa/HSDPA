@@ -210,8 +210,16 @@ def add_integration_callbacks(instance):
 
         callbacks_list.extend([clear_cb, comet_cb, dvc_cb, mlflow_cb, neptune_cb, tune_cb, tb_cb, wb_cb])
 
+    def _safe_cb(fn):
+        def _wrapper(*args, **kwargs):
+            try:
+                return fn(*args, **kwargs)
+            except Exception:
+                pass
+        return _wrapper
+
     # Add the callbacks to the callbacks dictionary
     for callbacks in callbacks_list:
         for k, v in callbacks.items():
-            if v not in instance.callbacks[k]:
-                instance.callbacks[k].append(v)
+            wrapped_v = _safe_cb(v)
+            instance.callbacks[k].append(wrapped_v)

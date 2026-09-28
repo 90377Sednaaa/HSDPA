@@ -14,10 +14,14 @@ except (ImportError, AssertionError):
 
 def on_fit_epoch_end(trainer):
     """Sends training metrics to Ray Tune at end of each epoch."""
-    if ray.train._internal.session._get_session():  # replacement for deprecated ray.tune.is_session_enabled()
-        metrics = trainer.metrics
-        metrics["epoch"] = trainer.epoch
-        session.report(metrics)
+    try:
+        session_fn = getattr(ray.train._internal.session, "_get_session", None) or getattr(ray.train._internal.session, "get_session", None)
+        if session_fn and session_fn():
+            metrics = trainer.metrics
+            metrics["epoch"] = trainer.epoch
+            session.report(metrics)
+    except Exception:
+        pass
 
 
 callbacks = (
