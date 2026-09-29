@@ -292,3 +292,49 @@ class L_HSDPA(nn.Module):
         out = self.proj_act(self.proj_bn(self.proj_conv(cat)))
         return out
 
+
+class CR_HSDPA(nn.Module):
+    """Channel-Reduced Hierarchical Scaled Dot-Product Attention (CR-HSDPA).
+    
+    Proposed by Murillo, Mendoza, Ferrer, & Barbosa (2026).
+    1. A learnable 1x1 convolution reduces input channels from C to C_r = max(16, int(C * r)).
+    2. Retains the original 4-level hierarchical TDA (ScaleDotProduct) operating on C_r.
+    3. Concatenates the 4 hierarchical attention outputs with the original-input skip connection (4 * C_r + C).
+    4. Projects concatenated features back to output channels (c2) via 1x1 conv + BN + SiLU.
+    """
+    def __init__(self, c1, c2, r=0.25):
+        super().__init__()
+        self.r = float(r)
+        c_r = max(16, int(c1 * self.r))
+        
+        # 1x1 Channel-reduction bottleneck (C -> C_r)
+        self.reduce_conv = nn.Conv2d(c1, c_r, kernel_size=1, stride=1, bias=False)
+        self.reduce_bn = nn.BatchNorm2d(c_r)
+        self.reduce_act = nn.SiLU()
+        
+        # 4-level hierarchical TDA (ScaleDotProduct) operating in series on reduced channels
+        self.sdp = ScaleDotProduct(c_r, c_r)
+        
+        # 1x1 Output projection: 4 TDA levels (4 * c_r) + original input (c1) -> c2
+        self.proj_conv = nn.Conv2d(c_r * 4 + c1, c2, kernel_size=1, stride=1, bias=False)
+        self.proj_bn = nn.BatchNorm2d(c2)
+        self.proj_act = nn.SiLU()
+
+    def forward(self, x):
+        # Step 1: 1x1 channel-reduction bottleneck
+        x_comp = self.reduce_act(self.reduce_bn(self.reduce_conv(x)))
+        
+        # Step 2: 4-level hierarchical TDA arranged in series
+        y1 = self.sdp(x_comp)
+        y2 = self.sdp(y1)
+        y3 = self.sdp(y2)
+        y4 = self.sdp(y3)
+        
+        # Step 3: Hierarchical aggregation (4 attention levels + original-input skip connection)
+        cat = torch.cat((y1, y2, y3, y4, x), dim=1)
+        
+        # Step 4: Final 1x1 projection back to target output channels
+        out = self.proj_act(self.proj_bn(self.proj_conv(cat)))
+        return out
+
+
