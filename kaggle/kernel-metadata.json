@@ -8,6 +8,7 @@
   "enable_gpu": "true",
   "enable_internet": "true",
   "dataset_sources": [
-    "leonidkulyk/ip102-yolov5"
+    "leonidkulyk/ip102-yolov5",
+    "sednaaa90377/cr-hsdpa-stage1"
   ]
 }

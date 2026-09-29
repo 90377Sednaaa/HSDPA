@@ -4,3 +4,6 @@ __pycache__/
 *.log
 kaggle_log/
 .system_generated/
+
+kaggle_stage1_output/
+dataset_stage1/
