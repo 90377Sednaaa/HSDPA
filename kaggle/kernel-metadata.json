@@ -1,6 +1,6 @@
 {
-  "id": "sednaaa90377/l-hsdpa-training",
-  "title": "L-HSDPA Training",
+  "id": "leanadrianmurillo/cr-hsdpa-training",
+  "title": "CR-HSDPA Training",
   "code_file": "train_kaggle.ipynb",
   "language": "python",
   "kernel_type": "notebook",
@@ -9,6 +9,6 @@
   "enable_internet": "true",
   "dataset_sources": [
     "leonidkulyk/ip102-yolov5",
-    "sednaaa90377/cr-hsdpa-stage1"
+    "leanadrianmurillo/cr-hsdpa-stage1"
   ]
 }
