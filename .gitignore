@@ -6,4 +6,6 @@ kaggle_log/
 .system_generated/
 
 kaggle_stage1_output/
+kaggle_stage2_output/
 dataset_stage1/
+dataset_stage2/*.pt
