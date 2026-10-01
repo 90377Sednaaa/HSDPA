@@ -240,7 +240,7 @@ class Contigous_Att(nn.Module):    # Input CxHxW
         # print("# y2 Output Size: ", y2.size())              # B x C1 x H x W
         y3 = self.sdp(y2)                                  
         # print("# y3 Output Size: ", y3.size())              # B x C1 x H x W
-        y4 = self.sdp(y1)                                  
+        y4 = self.sdp(y3)                                  
         # print("# y4 Output Size: ", y4.size())              # B x C1 x H x W
         output = torch.cat((y1,y2,y3,y4,x),dim=1)
         # print("# Output Size: ", output.size())             # B x C1*5 x H x W
