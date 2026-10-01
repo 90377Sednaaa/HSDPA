@@ -1,5 +1,5 @@
 {
-  "id": "leanadrianmurillo/cr-hsdpa-training",
+  "id": "leanadrianmurillo/attention-pestnet-baseline-training",
   "title": "Attention-PestNet Baseline Training",
   "code_file": "train_baseline.ipynb",
   "language": "python",
