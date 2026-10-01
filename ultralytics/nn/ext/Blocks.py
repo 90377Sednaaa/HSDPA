@@ -145,11 +145,11 @@ class Spatial_Attention(nn.Module):    # Input CxHxW
         hw_att = x * h_att * w_att                             
         # print("# H*W Output Size: ", hw_att.size())         # B x C1 x H x W
         
-        mpl5 = self.mp5(x)
+        mpl5 = self.mp5(hw_att)
         # print("# MP5 Output Size: ", mpl5.size())           # B x C1 x H/2 x W/2
-        mpl9 = self.mp9(x)
+        mpl9 = self.mp9(hw_att)
         # print("# MP9 Output Size: ", mpl9.size())           # B x C1 x H/2 x W/2
-        mpl13 = self.mp13(x)
+        mpl13 = self.mp13(hw_att)
         # print("# MP13 Output Size: ", mpl13.size())         # B x C1 x H/2 x W/2
         
         cat = torch.cat((mpl5,mpl9,mpl13),dim=1)
