@@ -1,6 +1,6 @@
 {
   "id": "leanadrianmurillo/cr-hsdpa-training",
-  "title": "CR-HSDPA Training",
+  "title": "Attention-PestNet Baseline Training",
   "code_file": "train_kaggle.ipynb",
   "language": "python",
   "kernel_type": "notebook",
@@ -8,7 +8,6 @@
   "enable_gpu": "true",
   "enable_internet": "true",
   "dataset_sources": [
-    "leonidkulyk/ip102-yolov5",
-    "leanadrianmurillo/cr-hsdpa-stage1"
+    "leanadrianmurillo/ip102-yolo"
   ]
 }

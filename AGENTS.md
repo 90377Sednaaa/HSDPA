@@ -9,6 +9,7 @@ This document defines the architectural context, dataset conventions, execution 
 * **Thesis Title:** *A Modified Attention-PestNet with Channel-Reduced Hierarchical Scaled Dot-Product Attention for Efficient Insect Pest Detection*
 * **Baseline Reference:** *Attention-PestNet: an attention-augmented framework for robust insect pest detection in diverse agricultural environments* (Doan et al., *Plant Methods* 2026, DOI: `10.1186/s13007-025-01489-z`).
 * **Core Hypothesis:** By introducing a Channel-Reduction (CR) bottleneck ($r = 0.25$) into the Hierarchical Scaled Dot-Product Attention (HSDPA) blocks, we significantly reduce parameter overhead (~19.66% parameter reduction, saving 15.6M parameters) and inference latency while retaining high pest detection accuracy (mAP@50 and Recall) on challenging agricultural benchmarks.
+* **Current Phase Directive (Thesis Panel Defense):** Per panelist instruction, the original **Baseline Attention-PestNet architecture** (`cfg/hsdpa.yaml`, $r = 1.00$) must be retrained from scratch on the newly established standard dataset `leanadrianmurillo/ip102-yolo` to serve as the rigorous experimental anchor before comparative ablation analysis.
 
 ---
 

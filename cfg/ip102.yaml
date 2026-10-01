@@ -1,6 +1,7 @@
-path: /kaggle/input/ip102-yolov5/IP102_YOLOv5
+path: /kaggle/input/ip102-yolo
 train: images/train
 val: images/val
+test: images/test
 nc: 102
 names:
   0: rice leaf roller
