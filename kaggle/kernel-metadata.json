@@ -1,7 +1,7 @@
 {
   "id": "leanadrianmurillo/cr-hsdpa-training",
   "title": "Attention-PestNet Baseline Training",
-  "code_file": "train_kaggle.ipynb",
+  "code_file": "train_baseline.ipynb",
   "language": "python",
   "kernel_type": "notebook",
   "is_private": "true",

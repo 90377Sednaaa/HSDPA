@@ -128,7 +128,9 @@ HSDPA/
 │   └── dataset-metadata.json
 ├── kaggle/                          # Kaggle notebook & kernel metadata
 │   ├── kernel-metadata.json         # Kaggle CLI configuration
-│   └── train_kaggle.ipynb           # Kaggle dual-T4 execution notebook
+│   ├── train_baseline.ipynb         # Dedicated notebook for Baseline Attention-PestNet (r=1.00)
+│   ├── train_cr_hsdpa.ipynb         # Dedicated notebook for Proposed CR-HSDPA (r=0.25)
+│   └── train_kaggle.ipynb           # Default execution entrypoint for Kaggle
 ├── ultralytics/                     # Custom Ultralytics framework source
 │   ├── cfg/default.yaml             # Mandatory default config for Ultralytics
 │   ├── nn/ext/Blocks.py             # Custom attention modules (CR_HSDPA, SDC, MSPA)
