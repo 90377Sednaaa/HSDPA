@@ -9,3 +9,4 @@ kaggle_stage*_output/
 dataset_stage*/*.pt
 dataset_r*_stage*/*.pt
 dataset_*/*.pt
+scratch/

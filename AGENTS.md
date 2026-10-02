@@ -28,8 +28,10 @@ This document defines the architectural context, dataset conventions, execution 
   * **Detect Head:** Decoupled anchor-free multi-scale detection head.
 * **Key Configuration Files:**
   * `cfg/cr_hsdpa_025.yaml`: Primary proposed model ($r = 0.25$).
+  * `cfg/cr_hsdpa_050.yaml`: Ablation model variant ($r = 0.50$).
+  * `cfg/cr_hsdpa_075.yaml`: Ablation model variant ($r = 0.75$).
+  * `cfg/cr_hsdpa_100.yaml`: Uncompressed model variant ($r = 1.00$).
   * `cfg/hsdpa.yaml`: Baseline Attention-PestNet model ($r = 1.0$).
-  * `cfg/l_hsdpa.yaml`: Lightweight HSDPA variant ($r = 0.5$).
   * `cfg/ip102.yaml`: Dataset configuration for 102 insect pest categories.
 
 ---
@@ -40,11 +42,12 @@ Due to Kaggle 12-hour session constraints, training on Kaggle Dual NVIDIA T4 GPU
 
 1. **Stage 1 (Epochs 1 – 50):**
    * Trains from scratch with SGD (`lr0=0.01`, `momentum=0.9`, `batch=32`, `imgsz=640`).
-   * Saves best checkpoint at `dataset_r025_stage1/best.pt` (mAP@50: ~65.34%).
+   * Saves best checkpoint at `dataset_r<ratio>_stage1/best.pt`.
+   * Baseline Attention-PestNet ($r = 1.00$) Stage 1 achieved mAP@50: **55.62%**, Recall: **53.85%**, Precision: **57.21%** across 10.77 hours.
 2. **Stage 2 (Epochs 51 – 100):**
    * Resumes/fine-tunes from Stage 1 `best.pt` with a smoother learning rate (`lr0=0.006`).
    * Reaches the full 100 cumulative epochs.
-   * Saves best checkpoint at `dataset_r025_stage2/best.pt` (mAP@50: ~66.69%, Recall: ~67.54%).
+   * Saves best checkpoint at `dataset_r<ratio>_stage2/best.pt`.
 
 ---
 
@@ -57,8 +60,8 @@ All experiment artifact directories **must explicitly identify the reduction rat
 
 * **Naming Standard:** `dataset_r<ratio>_stage<stage_number>/`
   * **$r = 0.25$ (Proposed CR-HSDPA):** `dataset_r025_stage1/` and `dataset_r025_stage2/`
-  * **$r = 0.50$ (L-HSDPA Ablation):** `dataset_r050_stage1/` and `dataset_r050_stage2/`
-  * **$r = 0.75$ (Ablation Variant):** `dataset_r075_stage1/` and `dataset_r075_stage2/`
+  * **$r = 0.50$ (CR-HSDPA Ablation):** `dataset_r050_stage1/` and `dataset_r050_stage2/`
+  * **$r = 0.75$ (CR-HSDPA Ablation):** `dataset_r075_stage1/` and `dataset_r075_stage2/`
   * **$r = 1.00$ (Baseline Attention-PestNet):** `dataset_r100_stage1/` and `dataset_r100_stage2/`
 
 ### Rule 2: Immediate Post-Download Cleanup of Raw Kaggle Outputs
@@ -113,22 +116,26 @@ HSDPA/
 │   ├── cr_hsdpa_050.yaml            # Ablation configuration (r=0.50)
 │   ├── cr_hsdpa_075.yaml            # Ablation configuration (r=0.75)
 │   ├── cr_hsdpa_100.yaml            # Uncompressed configuration (r=1.00)
-│   ├── hsdpa.yaml                   # Baseline model configuration
+│   ├── hsdpa.yaml                   # Baseline model configuration (r=1.00)
 │   └── ip102.yaml                   # IP102 dataset path & 102 class definitions
-├── dataset_r025_stage1/             # Proposed r=0.25 Stage 1 (Epochs 1-50) weights & metadata
-│   ├── best.pt
-│   └── dataset-metadata.json
-├── dataset_r025_stage2/             # Proposed r=0.25 Stage 2 (Epochs 51-100) final weights & curves
-│   ├── best.pt                      # Final 100-epoch trained weights
-│   ├── results.csv                  # Metric history across all epochs
+├── dataset_r100_stage1/             # Baseline r=1.00 Stage 1 (Epochs 1-50) weights & curves
+│   ├── best.pt                      # 50-epoch trained checkpoint (mAP@50: 55.62%)
+│   ├── results.csv                  # Metric history across 50 epochs
 │   ├── results.png                  # Loss and validation curves
 │   ├── confusion_matrix.png
+│   ├── confusion_matrix_normalized.png
 │   ├── PR_curve.png
 │   ├── F1_curve.png
+│   ├── P_curve.png
+│   ├── R_curve.png
+│   ├── training_time.txt            # Training duration (10.77 hours)
+│   ├── thesis_metrics_summary_baseline_stage1.csv
 │   └── dataset-metadata.json
 ├── kaggle/                          # Kaggle notebook & kernel metadata
-│   ├── kernel-metadata.json         # Kaggle CLI configuration
-│   ├── train_baseline.ipynb         # Dedicated notebook for Baseline Attention-PestNet (r=1.00)
+│   ├── kernel-metadata.json         # Kaggle CLI configuration (Stage 1)
+│   ├── kernel-metadata-stage2.json  # Kaggle CLI configuration (Stage 2)
+│   ├── train_baseline.ipynb         # Dedicated notebook for Baseline Stage 1
+│   ├── train_baseline_stage2.ipynb  # Dedicated notebook for Baseline Stage 2
 │   ├── train_cr_hsdpa.ipynb         # Dedicated notebook for Proposed CR-HSDPA (r=0.25)
 │   └── train_kaggle.ipynb           # Default execution entrypoint for Kaggle
 ├── ultralytics/                     # Custom Ultralytics framework source
