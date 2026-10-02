@@ -1,0 +1,14 @@
+{
+  "id": "leanadrianmurillo/attention-pestnet-baseline-stage2",
+  "title": "Attention-PestNet Baseline Stage 2",
+  "code_file": "train_baseline_stage2.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "dmrashidpferrer/ip102-yolo-dataset",
+    "leanadrianmurillo/baseline-hsdpa-stage1"
+  ]
+}
