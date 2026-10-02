@@ -1,0 +1,14 @@
+{
+  "id": "dmrashidpferrer/cr-hsdpa-r050-stage3",
+  "title": "CR-HSDPA r050 Stage 3 (101-150 of 200)",
+  "code_file": "train_r050_stage3.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "dmrashidpferrer/ip102-yolo-dataset",
+    "dmrashidpferrer/cr-r050-stage2-output"
+  ]
+}

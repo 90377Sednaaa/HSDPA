@@ -1,0 +1,13 @@
+{
+  "id": "dmrashidferrer/r2000-cr050-200ep",
+  "title": "R2000 CR-HSDPA r050 200ep",
+  "code_file": "train_r2000_cr050_200ep.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "dmrashidpferrer/r2000-pestnet"
+  ]
+}
