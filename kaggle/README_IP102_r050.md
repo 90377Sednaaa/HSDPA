@@ -6,7 +6,7 @@ Trains `cfg/cr_hsdpa_050.yaml` from scratch on `dmrashidpferrer/ip102-yolo-datas
 of 50 epochs**. Each stage's `best.pt` seeds the next stage.
 
 Branch: `HSDPA-DM-Testing`. Repo: `https://github.com/90377Sednaaa/HSDPA.git`.
-Account-agnostic: works on any Kaggle account linked via Kaggle CLI.
+Training account: `dmrashidpferrer` (linked via Kaggle CLI).
 
 ## Files
 
@@ -23,10 +23,11 @@ Section 2.7 eval cell after training.
 
 ## Prerequisites
 
-1. Kaggle CLI installed and linked (`kaggle.json` for the training account).
+1. Kaggle CLI installed and linked as `dmrashidpferrer` (`KAGGLE_API_TOKEN`
+   env var set in the terminal you push from).
 2. Each kernel needs **GPU on** and **internet on** (clones GitHub + pip-installs repo).
-3. In every `kernel-metadata-r050-sN.json`, replace `YOUR_KAGGLE_USERNAME`
-   with the training account's username.
+3. The `id:` and chained stage-output slugs in `kernel-metadata-r050-s1..s4.json`
+   are already set to `dmrashidpferrer/...` — no placeholder step remains.
 
 ## Run order
 
@@ -37,14 +38,14 @@ Section 2.7 eval cell after training.
    `kaggle kernels push -p kaggle --kernel-metadata kernel-metadata-r050-s1.json`
    (or push `train_r050_stage1.ipynb` from the Kaggle UI with the dataset attached).
 3. Run all cells top to bottom, exactly once. Takes ~10 h.
-4. When finished: kernel Output → **Save Version as Dataset**, e.g.
-   `<user>/cr-r050-stage1-output`.
+4. When finished: kernel Output → **Save Version as Dataset**, named
+   `dmrashidpferrer/cr-r050-stage1-output`.
 
 ### Stages 2–4 (chained)
 
-1. In the next stage's metadata file, replace the placeholder
-   `YOUR_KAGGLE_USERNAME/cr-r050-stage<N-1>-output` with the real output
-   dataset slug from the previous step.
+1. Confirm the next stage's metadata already points at the prior stage output
+   (`dmrashidpferrer/cr-r050-stage<N-1>-output`); if you named the saved
+   output differently, update that slug before pushing.
 2. Push and run that stage's notebook (attaches both the IP102 dataset
    and the prior stage output). The notebook auto-finds
    `/kaggle/input/**/best.pt` and continues from it with the stage LR.

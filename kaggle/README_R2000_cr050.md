@@ -6,7 +6,7 @@ Trains `cfg/cr_hsdpa_050.yaml` (Channel-Reduced HSDPA, r=0.50) from scratch on
 Dual-T4 session** — no stage splitting needed.
 
 Branch: `HSDPA-DM-Testing`. Repo: `https://github.com/90377Sednaaa/HSDPA.git`.
-Account-agnostic: works on any Kaggle account linked via Kaggle CLI.
+Training account: `dmrashidferrer` (linked via Kaggle CLI).
 
 ## Files
 
@@ -31,10 +31,11 @@ Source model/dataset configs are `nc=102` (IP102). The notebook handles the
 
 ## Prerequisites
 
-1. Kaggle CLI installed and linked (`kaggle.json` for the training account).
+1. Kaggle CLI installed and linked as `dmrashidferrer` (`KAGGLE_API_TOKEN`
+   env var set in the terminal you push from).
 2. Kernel needs **GPU on** and **internet on**.
-3. In `kernel-metadata-r2000-cr050.json`, replace `YOUR_KAGGLE_USERNAME`
-   with the training account's username.
+3. `kernel-metadata-r2000-cr050.json` already uses
+   `id: dmrashidferrer/r2000-cr050-200ep` — no placeholder step remains.
 
 ## Run
 
