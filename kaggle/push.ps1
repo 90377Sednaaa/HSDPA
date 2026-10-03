@@ -10,12 +10,13 @@
 #   .\push.ps1 r2000-baseline
 #
 # Keys:
-#   r2000-baseline | r2000-cr050 | r050-s1 | r050-s2 | r050-s3 | r050-s4
+#   r2000-baseline | r2000-cr050 | r2000-cr050-k3 | r050-s1 | r050-s2 | r050-s3 | r050-s4
 param([Parameter(Mandatory=$true)][string]$Kernel)
 
 $map = @{
   "r2000-baseline" = @("train_r2000_baseline_200ep.ipynb", "kernel-metadata-r2000-baseline.json")
   "r2000-cr050"    = @("train_r2000_cr050_200ep.ipynb", "kernel-metadata-r2000-cr050.json")
+  "r2000-cr050-k3" = @("train_r2000_cr050_k3_200ep.ipynb", "kernel-metadata-r2000-cr050-k3.json")
   "r050-s1"        = @("train_r050_stage1.ipynb", "kernel-metadata-r050-s1.json")
   "r050-s2"        = @("train_r050_stage2.ipynb", "kernel-metadata-r050-s2.json")
   "r050-s3"        = @("train_r050_stage3.ipynb", "kernel-metadata-r050-s3.json")

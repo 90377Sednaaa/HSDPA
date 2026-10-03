@@ -78,3 +78,15 @@ Per `AGENTS.md` hygiene rules:
   `dmrashidpferrer/r2000-pestnet` as kernel input.
 - Class-count errors → check the auto-discover cell output (`Using nc=...`);
   the dataset layout must contain `images/train`, `images/val`.
+
+## k=3 ablation variant (depth study at fixed r=0.50)
+
+- Notebook: `train_r2000_cr050_k3_200ep.ipynb`
+- Kernel metadata: `kernel-metadata-r2000-cr050-k3.json`
+  (`id: dmrashidferrer/r2000-cr050-k3-200ep`)
+- Model config: `cfg/cr_hsdpa_050_k3.yaml` — same as r050 but `CR_HSDPA`
+  entries pass `k=3` (3 TDA levels instead of 4; see `CR_HSDPA(..., k=4)`
+  default in `ultralytics/nn/ext/Blocks.py`).
+- Output dir: `dataset_r2000_r050_k3/r2000_cr050_k3_200ep/`
+- Push from the `kaggle/` folder: `.\push.ps1 r2000-cr050-k3`
+- Expected params at nc=16: ≈67.18M (−1.38M vs k4's 68.56M).
