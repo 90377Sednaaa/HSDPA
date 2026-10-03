@@ -1,6 +1,6 @@
 {
   "id": "dmrashidferrer/r2000-baseline-200ep",
-  "title": "R2000 Baseline HSDPA 200ep",
+  "title": "R2000 Baseline 200ep",
   "code_file": "train_r2000_baseline_200ep.ipynb",
   "language": "python",
   "kernel_type": "notebook",
