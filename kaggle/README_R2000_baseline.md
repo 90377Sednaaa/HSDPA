@@ -29,10 +29,21 @@ Source model/dataset configs are `nc=102` (IP102). The notebook handles the
 3. Writes `cfg/r2000.yaml` and a patched copy of the model yaml
    (`nc=16`) to `/tmp`, then trains from that.
 
+## API token setup (Terminal A — R2000 account `dmrashidferrer`)
+
+The token is only used for local `push`/`pull`/`status` API calls — never for
+running the kernel, and never written to any file. Set it per terminal session
+(PowerShell syntax):
+
+    $env:KAGGLE_API_TOKEN = "<PASTE-R2000-KGAT-TOKEN>"
+    kaggle kernels list --mine   # expect dmrashidferrer/* kernels
+
+Keep one terminal per account; the token lives only in that shell's memory.
+
 ## Prerequisites
 
 1. Kaggle CLI installed and linked as `dmrashidferrer` (`KAGGLE_API_TOKEN`
-   env var set in the terminal you push from).
+   env var set in the terminal you push from — see Token setup above).
 2. Kernel needs **GPU on** and **internet on**.
 3. `kernel-metadata-r2000-baseline.json` already uses
    `id: dmrashidferrer/r2000-baseline-200ep` — no placeholder step remains.

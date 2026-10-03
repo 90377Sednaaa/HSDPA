@@ -21,10 +21,23 @@ Common hyperparams: SGD + momentum 0.9, `batch=32`, `imgsz=640`, `amp=True`,
 `save_period=10` (+ automatic `best.pt` / `last.pt`), Dual T4 (`device=[0,1]`),
 Section 2.7 eval cell after training.
 
+## API token setup (Terminal B — IP102 account `dmrashidpferrer`)
+
+The token is only used for local `push`/`pull`/`status` API calls — never for
+running the kernel, and never written to any file. Set it per terminal session
+(PowerShell syntax):
+
+    $env:KAGGLE_API_TOKEN = "<PASTE-IP102-KGAT-TOKEN>"
+    kaggle kernels list --mine   # expect dmrashidpferrer/* kernels
+
+Keep one terminal per account; the token lives only in that shell's memory.
+Use this same Terminal B for all 4 stage pushes so the chained output slugs
+(`dmrashidpferrer/cr-r050-stage<N>-output`) resolve under the right account.
+
 ## Prerequisites
 
 1. Kaggle CLI installed and linked as `dmrashidpferrer` (`KAGGLE_API_TOKEN`
-   env var set in the terminal you push from).
+   env var set in the terminal you push from — see Token setup above).
 2. Each kernel needs **GPU on** and **internet on** (clones GitHub + pip-installs repo).
 3. The `id:` and chained stage-output slugs in `kernel-metadata-r050-s1..s4.json`
    are already set to `dmrashidpferrer/...` — no placeholder step remains.
