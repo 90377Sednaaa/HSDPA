@@ -1,0 +1,13 @@
+{
+  "id": "leanadrianmurillo/attention-pestnet-baseline-training",
+  "title": "Attention-PestNet Baseline Training",
+  "code_file": "train_baseline.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "leanadrianmurillo/ip102-yolo"
+  ]
+}
