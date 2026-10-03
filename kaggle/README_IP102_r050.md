@@ -47,9 +47,10 @@ Use this same Terminal B for all 4 stage pushes so the chained output slugs
 ### Stage 1 (from scratch)
 
 1. Attach dataset `dmrashidpferrer/ip102-yolo-dataset` (already in s1 metadata).
-2. Push and run:
-   `kaggle kernels push -p kaggle --kernel-metadata kernel-metadata-r050-s1.json`
-   (or push `train_r050_stage1.ipynb` from the Kaggle UI with the dataset attached).
+2. Push and run from the `kaggle/` folder (`push.ps1` stages the notebook +
+   a correctly-named `kernel-metadata.json` for Kaggle CLI 2.x):
+   `.\push.ps1 r050-s1`
+   (or upload `train_r050_stage1.ipynb` from the Kaggle UI with the dataset attached).
 3. Run all cells top to bottom, exactly once. Takes ~10 h.
 4. When finished: kernel Output → **Save Version as Dataset**, named
    `dmrashidpferrer/cr-r050-stage1-output`.
@@ -59,8 +60,9 @@ Use this same Terminal B for all 4 stage pushes so the chained output slugs
 1. Confirm the next stage's metadata already points at the prior stage output
    (`dmrashidpferrer/cr-r050-stage<N-1>-output`); if you named the saved
    output differently, update that slug before pushing.
-2. Push and run that stage's notebook (attaches both the IP102 dataset
-   and the prior stage output). The notebook auto-finds
+2. Push and run that stage from the `kaggle/` folder:
+   `.\push.ps1 r050-s<N>` (e.g. `.\push.ps1 r050-s2`). This attaches both
+   the IP102 dataset and the prior stage output. The notebook auto-finds
    `/kaggle/input/**/best.pt` and continues from it with the stage LR.
    Do **not** set `resume=True` across stages — the notebook handles this
    (`resume=True` is only for restarting an interrupted run in the same

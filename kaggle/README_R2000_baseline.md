@@ -51,9 +51,11 @@ Keep one terminal per account; the token lives only in that shell's memory.
 ## Run
 
 1. Attach dataset `dmrashidpferrer/r2000-pestnet` (already in metadata).
-2. Push and run:
-   `kaggle kernels push -p kaggle --kernel-metadata kernel-metadata-r2000-baseline.json`
-   (or push `train_r2000_baseline_200ep.ipynb` from the Kaggle UI).
+2. Push and run from the `kaggle/` folder (Kaggle CLI 2.x only accepts a
+   folder containing the notebook + a file named exactly
+   `kernel-metadata.json` — `push.ps1` stages that for you):
+   `.\push.ps1 r2000-baseline`
+   (or upload `train_r2000_baseline_200ep.ipynb` from the Kaggle UI).
 3. Run all cells top to bottom, exactly once (single `model.train()` cell).
 4. If the kernel is interrupted: re-push/re-run the **same** notebook — it
    resumes automatically from its own `last.pt`.
