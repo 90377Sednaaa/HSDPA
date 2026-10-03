@@ -131,11 +131,27 @@ HSDPA/
 │   ├── training_time.txt            # Training duration (10.77 hours)
 │   ├── thesis_metrics_summary_baseline_stage1.csv
 │   └── dataset-metadata.json
+├── dataset_r100_stage2/             # Baseline r=1.00 Stage 2 (Epochs 51-100) weights & curves
+│   ├── best.pt                      # 100-epoch trained checkpoint (mAP@50: 57.90%)
+│   ├── results.csv                  # Metric history across epochs 51-100
+│   ├── results.png                  # Loss and validation curves
+│   ├── confusion_matrix.png
+│   ├── confusion_matrix_normalized.png
+│   ├── PR_curve.png
+│   ├── F1_curve.png
+│   ├── P_curve.png
+│   ├── R_curve.png
+│   ├── training_time.txt            # Training duration (11.51 hours)
+│   ├── thesis_metrics_summary_baseline_stage2.csv
+│   └── dataset-metadata.json
 ├── kaggle/                          # Kaggle notebook & kernel metadata
-│   ├── kernel-metadata.json         # Kaggle CLI configuration (Stage 1)
-│   ├── kernel-metadata-stage2.json  # Kaggle CLI configuration (Stage 2)
+│   ├── kernel-metadata.json         # Kaggle CLI configuration (Active Stage)
+│   ├── kernel-metadata-stage1.json  # Kaggle CLI configuration (Stage 1 archive)
+│   ├── kernel-metadata-stage2.json  # Kaggle CLI configuration (Stage 2 archive)
+│   ├── kernel-metadata-stage3.json  # Kaggle CLI configuration (Stage 3)
 │   ├── train_baseline.ipynb         # Dedicated notebook for Baseline Stage 1
 │   ├── train_baseline_stage2.ipynb  # Dedicated notebook for Baseline Stage 2
+│   ├── train_baseline_stage3.ipynb  # Dedicated notebook for Baseline Stage 3
 │   ├── train_cr_hsdpa.ipynb         # Dedicated notebook for Proposed CR-HSDPA (r=0.25)
 │   └── train_kaggle.ipynb           # Default execution entrypoint for Kaggle
 ├── ultralytics/                     # Custom Ultralytics framework source
