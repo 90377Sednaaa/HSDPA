@@ -10,7 +10,7 @@
 #   .\push.ps1 r2000-baseline
 #
 # Keys:
-#   r2000-baseline | r2000-cr050 | r2000-cr050-k3 | r050-s1 | r050-s2 | r050-s3 | r050-s4
+#   r2000-baseline | r2000-cr050 | r2000-cr050-k3 | r050-s1 | r050-s2 | r050-s3 | r050-s4 | r050-s4-dmrashidferrer
 param([Parameter(Mandatory=$true)][string]$Kernel)
 
 $map = @{
@@ -21,6 +21,7 @@ $map = @{
   "r050-s2"        = @("train_r050_stage2.ipynb", "kernel-metadata-r050-s2.json")
   "r050-s3"        = @("train_r050_stage3.ipynb", "kernel-metadata-r050-s3.json")
   "r050-s4"        = @("train_r050_stage4.ipynb", "kernel-metadata-r050-s4.json")
+  "r050-s4-dmrashidferrer" = @("train_r050_stage4.ipynb", "kernel-metadata-r050-s4-dmrashidferrer.json")
 }
 
 if (-not $map.ContainsKey($Kernel)) {

@@ -15,7 +15,16 @@ Training account: `dmrashidpferrer` (linked via Kaggle CLI).
 | 1 | `train_r050_stage1.ipynb` | `kernel-metadata-r050-s1.json` | 1–50 | 0.01 | `dataset_r050_stage1/ip102_cr050_stage1/` |
 | 2 | `train_r050_stage2.ipynb` | `kernel-metadata-r050-s2.json` | 51–100 | 0.006 | `dataset_r050_stage2/ip102_cr050_stage2/` |
 | 3 | `train_r050_stage3.ipynb` | `kernel-metadata-r050-s3.json` | 101–150 | 0.003 | `dataset_r050_stage3/ip102_cr050_stage3/` |
-| 4 | `train_r050_stage4.ipynb` | `kernel-metadata-r050-s4.json` | 151–200 | 0.0015 | `dataset_r050_stage4/ip102_cr050_stage4/` |
+| 4 | `train_r050_stage4.ipynb` | `kernel-metadata-r050-s4-dmrashidferrer.json` | 151–200 | 0.0015 | `dataset_r050_stage4/ip102_cr050_stage4/` |
+
+> **Account switch at Stage 4:** `dmrashidpferrer` ran out of GPU session
+> hours, so Stage 4 runs under **`dmrashidferrer`** (Terminal A token).
+> Same notebook (`train_r050_stage4.ipynb`), metadata
+> `kernel-metadata-r050-s4-dmrashidferrer.json` (`id:
+> dmrashidferrer/cr-hsdpa-r050-stage4`) attaches the public
+> `dmrashidpferrer/ip102-yolo-dataset` plus
+> `dmrashidferrer/cr-r050-stage3-output`. Push via
+> `.\push.ps1 r050-s4-dmrashidferrer`.
 
 Common hyperparams: SGD + momentum 0.9, `batch=32`, `imgsz=640`, `amp=True`,
 `save_period=10` (+ automatic `best.pt` / `last.pt`), Dual T4 (`device=[0,1]`),

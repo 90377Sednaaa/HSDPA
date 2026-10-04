@@ -1,0 +1,14 @@
+{
+  "id": "dmrashidferrer/cr-hsdpa-r050-stage4",
+  "title": "CR-HSDPA R050 Stage4",
+  "code_file": "train_r050_stage4.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "dmrashidpferrer/ip102-yolo-dataset",
+    "dmrashidferrer/cr-r050-stage3-output"
+  ]
+}
