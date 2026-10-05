@@ -144,16 +144,49 @@ HSDPA/
 │   ├── training_time.txt            # Training duration (11.51 hours)
 │   ├── thesis_metrics_summary_baseline_stage2.csv
 │   └── dataset-metadata.json
+├── dataset_r100_stage3/             # Baseline r=1.00 Stage 3 (Epochs 101-150) weights & curves
+│   ├── best.pt                      # 150-epoch trained checkpoint (mAP@50: 57.65%, Recall: 56.90%)
+│   ├── results.csv                  # Metric history across epochs 101-150
+│   ├── results.png                  # Loss and validation curves
+│   ├── confusion_matrix.png
+│   ├── confusion_matrix_normalized.png
+│   ├── PR_curve.png
+│   ├── F1_curve.png
+│   ├── P_curve.png
+│   ├── R_curve.png
+│   ├── training_time.txt            # Training duration (10.42 hours)
+│   ├── thesis_metrics_summary_baseline_stage3.csv
+│   └── dataset-metadata.json
+├── dataset_r100_stage4/             # Baseline r=1.00 Stage 4 (Epochs 151-200) weights & curves
+│   ├── best.pt                      # Final 200-epoch trained checkpoint (mAP@50: 57.11%, Recall: 56.81%)
+│   ├── results.csv                  # Metric history across epochs 151-200
+│   ├── results.png                  # Loss and validation curves
+│   ├── confusion_matrix.png
+│   ├── confusion_matrix_normalized.png
+│   ├── PR_curve.png
+│   ├── F1_curve.png
+│   ├── P_curve.png
+│   ├── R_curve.png
+│   ├── training_time.txt            # Training duration (11.38 hours)
+│   ├── thesis_metrics_summary_baseline_stage4.csv
+│   └── dataset-metadata.json
 ├── kaggle/                          # Kaggle notebook & kernel metadata
 │   ├── kernel-metadata.json         # Kaggle CLI configuration (Active Stage)
 │   ├── kernel-metadata-stage1.json  # Kaggle CLI configuration (Stage 1 archive)
 │   ├── kernel-metadata-stage2.json  # Kaggle CLI configuration (Stage 2 archive)
-│   ├── kernel-metadata-stage3.json  # Kaggle CLI configuration (Stage 3)
+│   ├── kernel-metadata-stage3.json  # Kaggle CLI configuration (Stage 3 archive)
+│   ├── kernel-metadata-stage4.json  # Kaggle CLI configuration (Stage 4 archive)
 │   ├── train_baseline.ipynb         # Dedicated notebook for Baseline Stage 1
 │   ├── train_baseline_stage2.ipynb  # Dedicated notebook for Baseline Stage 2
 │   ├── train_baseline_stage3.ipynb  # Dedicated notebook for Baseline Stage 3
+│   ├── train_baseline_stage4.ipynb  # Dedicated notebook for Baseline Stage 4
 │   ├── train_cr_hsdpa.ipynb         # Dedicated notebook for Proposed CR-HSDPA (r=0.25)
 │   └── train_kaggle.ipynb           # Default execution entrypoint for Kaggle
+├── scripts/                         # Analysis & plotting scripts
+│   └── plot_200epochs.py            # Generates publication-ready 200-epoch curves
+├── results_200epochs.csv            # Concatenated metrics across all 200 cumulative epochs
+├── results_200epochs.png            # Multi-panel 200-epoch training curves plot
+├── thesis_master_baseline_summary_200epochs.csv # Master summary of all 4 baseline stages
 ├── ultralytics/                     # Custom Ultralytics framework source
 │   ├── cfg/default.yaml             # Mandatory default config for Ultralytics
 │   ├── nn/ext/Blocks.py             # Custom attention modules (CR_HSDPA, SDC, MSPA)
