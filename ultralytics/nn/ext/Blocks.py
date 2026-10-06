@@ -145,11 +145,11 @@ class Spatial_Attention(nn.Module):    # Input CxHxW
         hw_att = x * h_att * w_att                             
         # print("# H*W Output Size: ", hw_att.size())         # B x C1 x H x W
         
-        mpl5 = self.mp5(hw_att)
+        mpl5 = self.mp5(x)
         # print("# MP5 Output Size: ", mpl5.size())           # B x C1 x H/2 x W/2
-        mpl9 = self.mp9(hw_att)
+        mpl9 = self.mp9(x)
         # print("# MP9 Output Size: ", mpl9.size())           # B x C1 x H/2 x W/2
-        mpl13 = self.mp13(hw_att)
+        mpl13 = self.mp13(x)
         # print("# MP13 Output Size: ", mpl13.size())         # B x C1 x H/2 x W/2
         
         cat = torch.cat((mpl5,mpl9,mpl13),dim=1)
@@ -240,7 +240,7 @@ class Contigous_Att(nn.Module):    # Input CxHxW
         # print("# y2 Output Size: ", y2.size())              # B x C1 x H x W
         y3 = self.sdp(y2)                                  
         # print("# y3 Output Size: ", y3.size())              # B x C1 x H x W
-        y4 = self.sdp(y3)                                  
+        y4 = self.sdp(y1)                                  
         # print("# y4 Output Size: ", y4.size())              # B x C1 x H x W
         output = torch.cat((y1,y2,y3,y4,x),dim=1)
         # print("# Output Size: ", output.size())             # B x C1*5 x H x W
