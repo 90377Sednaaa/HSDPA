@@ -1,6 +1,6 @@
 {
-  "id": "leanadrianmurillo/attention-pestnet-baseline-training",
-  "title": "Attention-PestNet Baseline Training",
+  "id": "leanadrianmurillo/original-pestnet-baseline-stage-1",
+  "title": "Original PestNet Baseline Stage 1",
   "code_file": "train_baseline.ipynb",
   "language": "python",
   "kernel_type": "notebook",
@@ -8,6 +8,6 @@
   "enable_gpu": "true",
   "enable_internet": "true",
   "dataset_sources": [
-    "leanadrianmurillo/ip102-yolo"
+    "dmrashidpferrer/ip102-yolo-dataset"
   ]
 }
